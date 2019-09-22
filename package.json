@@ -1,0 +1,21 @@
+{
+  "name": "finances-back",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index",
+    "dev": "npx nodemon --delay 1000ms --ext js,graphql src/index",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "André Gustavo Castro <andregustavo.castro@gmail.com> (https://www.webapps.agency/)",
+  "license": "MIT",
+  "dependencies": {
+    "graphql-yoga": "^1.18.3",
+    "prisma-binding": "^2.3.16",
+    "prisma-client-lib": "^1.34.8"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.2"
+  }
+}
