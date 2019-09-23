@@ -36,6 +36,30 @@ function createCategory(parent, {description, operation}, ctx, info) {
 }
 
 
+function createRecord(parent, args, ctx, info) {
+  const userId = getUserId(ctx)
+  return ctx.db.mutation.createRecord({
+    data: {
+      user: {
+        connect: { id: userId }
+      },
+      account: {
+        connect: {id: args.accountId}
+      },
+      category: {
+        connect: {id: args.categoryId}
+      },
+      amount: args.amount,
+      type: args.type,
+      date: args.date,
+      description: args.description,
+      tags: args.tags,
+      note: args.note
+    }
+  })
+}
+
+
 async function login(parent, {email, password}, ctx, info) {
   const user = await ctx.db.query.user({where: {email}})
   if (!user) {
@@ -65,6 +89,7 @@ async function signup(parent, args, ctx, info) {
 module.exports = {
   createAccount,
   createCategory,
+  createRecord,
   login,
   signup
 }
