@@ -7,7 +7,7 @@ type User {
 
 type Account {
   id: ID! @id
-  user: User
+  user: User @relation(link: TABLE)
   description: String!
 }
 
@@ -18,16 +18,16 @@ enum Operation {
 
 type Category {
   id: ID! @id
-  user: User
+  user: User @relation(link: TABLE)
   description: String!
   operation: Operation!
 }
 
 type Record {
   id: ID! @id
-  user: User!
-  account: Account!
-  category: Category!
+  user: User! @relation(link: TABLE)
+  account: Account! @relation(link: TABLE)
+  category: Category!  @relation(link: TABLE)
   amount: Float!
   type: Operation!
   date: DateTime!

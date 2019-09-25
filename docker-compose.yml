@@ -7,7 +7,7 @@ services:
     ports: 
       - "4000:4000"
     environment:
-      PRISMA_ENDPOINT: http://prisma:4466/${PRISMA_SERVICE}/${PRISMA_STAGE}
+      PRISMA_ENDPOINT: http://prisma:4466
       JWT_SECRET: ${JWT_SECRET}
       PRISMA_SERVICE: ${PRISMA_SERVICE}
       PRISMA_STAGE: ${PRISMA_STAGE}
@@ -31,10 +31,13 @@ services:
             user: prisma
             password: prisma
             migrations: true
+            rawAccess: true
 
   postgres:
     image: postgres:11.5
     restart: always
+    ports:
+    - "5432:5432"
     environment:
       POSTGRES_USER: prisma
       POSTGRES_PASSWORD: prisma
